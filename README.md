@@ -106,8 +106,6 @@ Publish the website in the given URL.
       transform: scale(1.07);
       box-shadow: 0px 8px 20px rgba(255, 99, 71, 0.6);
     }
-
-    /* Modal Styling */
     .modal {
       display: none;
       position: fixed;
@@ -155,10 +153,8 @@ Publish the website in the given URL.
 {% load static %}
 <body>
   <h1>Interactive Wallpaper Gallery</h1>
-
-  <!-- Landscape Anime Wallpapers Section -->
   <div class="section">
-    <h2>Landscape Anime Wallpapers</h2>
+    <h2>Anime Wallpapers</h2>
     <div class="gallery landscape">
       <img src="{% static 'sam1.jpeg' %}" alt="Anime 1">
       <img src="{% static 'sam3.jpeg' %}" alt="Anime 2">
@@ -166,8 +162,6 @@ Publish the website in the given URL.
       <img src="{% static 'zoro.jpeg' %}" alt="Anime 4">
     </div>
   </div>
-
-  <!-- Landscape Car Wallpapers Section -->
   <div class="section">
     <h2>Landscape Car Wallpapers</h2>
     <div class="gallery landscape">
@@ -178,20 +172,18 @@ Publish the website in the given URL.
     </div>
   </div>
 
-  <!-- Modal for Enlarged Images -->
   <div class="modal" id="modal">
     <span class="close" id="close">&times;</span>
     <img id="modalImg" src="" alt="Modal View">
   </div>
 
   <script>
-    // Select all images in the gallery
     const images = document.querySelectorAll('.gallery img');
     const modal = document.getElementById('modal');
     const modalImg = document.getElementById('modalImg');
     const closeBtn = document.getElementById('close');
 
-    // Add click event to each image
+
     images.forEach(img => {
       img.addEventListener('click', () => {
         modal.style.display = 'flex';
@@ -199,13 +191,10 @@ Publish the website in the given URL.
         modalImg.alt = img.alt;
       });
     });
-
-    // Close the modal when the close button is clicked
     closeBtn.addEventListener('click', () => {
       modal.style.display = 'none';
     });
 
-    // Close the modal when clicking outside the image
     modal.addEventListener('click', (e) => {
       if (e.target === modal) {
         modal.style.display = 'none';
