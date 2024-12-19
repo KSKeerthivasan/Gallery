@@ -2,26 +2,19 @@
 # Date: 31/10/2024
 # AIM:
 To design a web application for an inteactive image gallery with minimum five images.
-
 # DESIGN STEPS:
 ## Step 1:
 Clone the github repository and create Django admin interface.
-
 ## Step 2:
 Change settings.py file to allow request from all hosts.
-
 ## Step 3:
 Use CSS for positioning and styling.
-
 ## Step 4:
 Write JavaScript program for implementing interactivity.
-
 ## Step 5:
 Validate the HTML and CSS code.
-
 ## Step 6:
 Publish the website in the given URL.
-
 # PROGRAM :
 ### Gallery.html
 ```
@@ -43,7 +36,6 @@ Publish the website in the given URL.
       flex-direction: column;
       align-items: center;
     }
-
     h1 {
       margin-top: 30px;
       font-size: 2.5rem;
@@ -51,7 +43,6 @@ Publish the website in the given URL.
       letter-spacing: 2px;
       text-transform: uppercase;
     }
-
     .section {
       width: 100%;
       max-width: 1400px;
@@ -61,7 +52,6 @@ Publish the website in the given URL.
       border-radius: 15px;
       box-shadow: 0px 10px 25px rgba(0, 0, 0, 0.5);
     }
-
     .section h2 {
       text-align: center;
       font-size: 2rem;
@@ -71,7 +61,6 @@ Publish the website in the given URL.
       position: relative;
       padding-bottom: 10px;
     }
-
     .section h2::after {
       content: '';
       width: 50px;
@@ -83,14 +72,12 @@ Publish the website in the given URL.
       transform: translateX(-50%);
       border-radius: 2px;
     }
-
     .gallery {
       display: flex;
       flex-wrap: wrap;
       gap: 20px;
       justify-content: center;
     }
-
     .gallery img {
       cursor: pointer;
       width: 400px;
@@ -100,7 +87,6 @@ Publish the website in the given URL.
       border-radius: 10px;
       transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
-
     .gallery img:hover {
       transform: scale(1.07);
       box-shadow: 0px 8px 20px rgba(255, 99, 71, 0.6);
@@ -117,14 +103,12 @@ Publish the website in the given URL.
       align-items: center;
       animation: fadeIn 0.5s;
     }
-
     .modal img {
       max-width: 90%;
       max-height: 80%;
       border: 5px solid #ff6347;
       border-radius: 10px;
     }
-
     .modal .close {
       position: absolute;
       top: 20px;
@@ -134,11 +118,9 @@ Publish the website in the given URL.
       cursor: pointer;
       transition: color 0.3s ease;
     }
-
     .modal .close:hover {
       color: #ffffff;
     }
-
     @keyframes fadeIn {
       from {
         opacity: 0;
@@ -175,14 +157,11 @@ Publish the website in the given URL.
     <span class="close" id="close">&times;</span>
     <img id="modalImg" src="" alt="Modal View">
   </div>
-
   <script>
     const images = document.querySelectorAll('.gallery img');
     const modal = document.getElementById('modal');
     const modalImg = document.getElementById('modalImg');
     const closeBtn = document.getElementById('close');
-
-
     images.forEach(img => {
       img.addEventListener('click', () => {
         modal.style.display = 'flex';
@@ -193,7 +172,6 @@ Publish the website in the given URL.
     closeBtn.addEventListener('click', () => {
       modal.style.display = 'none';
     });
-
     modal.addEventListener('click', (e) => {
       if (e.target === modal) {
         modal.style.display = 'none';
@@ -213,15 +191,10 @@ def gal(request):
 ```
 from pathlib import Path
 import os
-
 BASE_DIR = Path(__file__).resolve().parent.parent
-
 SECRET_KEY = 'django-insecure-$!-6&=^=$%caeoq)k%*1ce6v=&g5naz3m^lb^!yxebucula+5^'
-
 DEBUG = True
-
 ALLOWED_HOSTS = []
-
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -231,7 +204,6 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'photos',
 ]
-
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -241,9 +213,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
-
 ROOT_URLCONF = 'gallery.urls'
-
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
@@ -259,9 +229,7 @@ TEMPLATES = [
         },
     },
 ]
-
 WSGI_APPLICATION = 'gallery.wsgi.application'
-
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
@@ -282,24 +250,18 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
-
 LANGUAGE_CODE = 'en-us'
-
 TIME_ZONE = 'UTC'
-
 USE_I18N = True
-
 USE_TZ = True
-
 STATIC_URL = 'static/'
-DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'    
 ```
 ### urls.py 
 ```
 from django.contrib import admin # type: ignore
 from django.urls import path # type: ignore
 from photos import views
-
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('gal',views.gal)
