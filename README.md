@@ -36,6 +36,7 @@ Publish the website in the given URL.
       flex-direction: column;
       align-items: center;
     }
+
     h1 {
       margin-top: 30px;
       font-size: 2.5rem;
@@ -43,6 +44,7 @@ Publish the website in the given URL.
       letter-spacing: 2px;
       text-transform: uppercase;
     }
+
     .section {
       width: 100%;
       max-width: 1400px;
@@ -52,6 +54,7 @@ Publish the website in the given URL.
       border-radius: 15px;
       box-shadow: 0px 10px 25px rgba(0, 0, 0, 0.5);
     }
+
     .section h2 {
       text-align: center;
       font-size: 2rem;
@@ -61,6 +64,7 @@ Publish the website in the given URL.
       position: relative;
       padding-bottom: 10px;
     }
+
     .section h2::after {
       content: '';
       width: 50px;
@@ -72,13 +76,15 @@ Publish the website in the given URL.
       transform: translateX(-50%);
       border-radius: 2px;
     }
+
     .gallery {
       display: flex;
       flex-wrap: wrap;
       gap: 20px;
       justify-content: center;
     }
-    .gallery img {
+
+    .gallery img {`
       cursor: pointer;
       width: 400px;
       height: 250px;
@@ -87,47 +93,10 @@ Publish the website in the given URL.
       border-radius: 10px;
       transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
+
     .gallery img:hover {
       transform: scale(1.07);
       box-shadow: 0px 8px 20px rgba(255, 99, 71, 0.6);
-    }
-    .modal {
-      display: none;
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-color: rgba(0, 0, 0, 0.9);
-      justify-content: center;
-      align-items: center;
-      animation: fadeIn 0.5s;
-    }
-    .modal img {
-      max-width: 90%;
-      max-height: 80%;
-      border: 5px solid #ff6347;
-      border-radius: 10px;
-    }
-    .modal .close {
-      position: absolute;
-      top: 20px;
-      right: 30px;
-      font-size: 50px;
-      color: #ff6347;
-      cursor: pointer;
-      transition: color 0.3s ease;
-    }
-    .modal .close:hover {
-      color: #ffffff;
-    }
-    @keyframes fadeIn {
-      from {
-        opacity: 0;
-      }
-      to {
-        opacity: 1;
-      }
     }
   </style>
 </head>
@@ -137,46 +106,26 @@ Publish the website in the given URL.
   <div class="section">
     <h2>Anime Wallpapers</h2>
     <div class="gallery landscape">
-      <img src="{% static 'sam1.jpeg' %}" alt="Anime 1">
-      <img src="{% static 'sam3.jpeg' %}" alt="Anime 2">
-      <img src="{% static 'sam2.jpeg' %}" alt="Anime 3">
-      <img src="{% static 'zoro.jpeg' %}" alt="Anime 4">
+      <img src="{% static 'sam1.jpeg' %}" alt="Anime 1" onclick="openInNewTab(this.src)">
+      <img src="{% static 'sam3.jpeg' %}" alt="Anime 2" onclick="openInNewTab(this.src)">
+      <img src="{% static 'sam2.jpeg' %}" alt="Anime 3" onclick="openInNewTab(this.src)">
+      <img src="{% static 'zoro.jpeg' %}" alt="Anime 4" onclick="openInNewTab(this.src)">
     </div>
   </div>
   <div class="section">
-    <h2>Landscape Car Wallpapers</h2>
+    <h2>Car Wallpapers</h2>
     <div class="gallery landscape">
-      <img src="{% static 'carl4.jpeg' %}" alt="Car 1">
-      <img src="{% static 'carl1.jpeg' %}" alt="Car 2">
-      <img src="{% static 'carl2.jpeg' %}" alt="Car 3">
-      <img src="{% static 'carl3.jpeg' %}" alt="Car 4">
+      <img src="{% static 'carl4.jpeg' %}" alt="Car 1" onclick="openInNewTab(this.src)">
+      <img src="{% static 'carl1.jpeg' %}" alt="Car 2" onclick="openInNewTab(this.src)">
+      <img src="{% static 'carl2.jpeg' %}" alt="Car 3" onclick="openInNewTab(this.src)">
+      <img src="{% static 'carl3.jpeg' %}" alt="Car 4" onclick="openInNewTab(this.src)">
     </div>
   </div>
 
-  <div class="modal" id="modal">
-    <span class="close" id="close">&times;</span>
-    <img id="modalImg" src="" alt="Modal View">
-  </div>
   <script>
-    const images = document.querySelectorAll('.gallery img');
-    const modal = document.getElementById('modal');
-    const modalImg = document.getElementById('modalImg');
-    const closeBtn = document.getElementById('close');
-    images.forEach(img => {
-      img.addEventListener('click', () => {
-        modal.style.display = 'flex';
-        modalImg.src = img.src;
-        modalImg.alt = img.alt;
-      });
-    });
-    closeBtn.addEventListener('click', () => {
-      modal.style.display = 'none';
-    });
-    modal.addEventListener('click', (e) => {
-      if (e.target === modal) {
-        modal.style.display = 'none';
-      }
-    });
+    function openInNewTab(url) {
+      window.open(url, '_blank');
+    }
   </script>
 </body>
 </html>
